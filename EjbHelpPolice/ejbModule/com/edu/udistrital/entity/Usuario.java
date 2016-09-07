@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/*@Id
-	private String persona_identPersona;*/
+	@Id
+	private String idUsuario;
 
 	private String contraseña;
 
@@ -25,20 +25,19 @@ public class Usuario implements Serializable {
 	private Perfil perfil;
 
 	//bi-directional one-to-one association to Persona
-	@Id
 	@OneToOne
 	private Persona persona;
 
 	public Usuario() {
 	}
 
-	/*public String getPersona_identPersona() {
-		return this.persona_identPersona;
+	public String getIdUsuario() {
+		return this.idUsuario;
 	}
 
-	public void setPersona_identPersona(String persona_identPersona) {
-		this.persona_identPersona = persona_identPersona;
-	}*/
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 	public String getContraseña() {
 		return this.contraseña;

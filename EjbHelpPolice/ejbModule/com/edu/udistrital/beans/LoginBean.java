@@ -9,7 +9,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.edu.udistrital.entity.Perfil;
+import com.edu.udistrital.entity.Usuario;
 import com.edu.udistrital.model.PerfilModel;
+import com.edu.udistrital.model.UsuarioModel;
 import com.google.gson.Gson;
 
 @Stateless
@@ -24,14 +26,14 @@ public class LoginBean {
 		
 	}
 	
-	public String ingresarLogin(PerfilModel perfilModel){
-		Query query = em.createNamedQuery("Perfil.findAll");
+	public String ingresarLogin(UsuarioModel usuarioModel){
+		Query query = em.createNamedQuery("Usuario.findAll");
 		List<Perfil> list = query.getResultList();
-		String json = gson.toJson(perfilModel);
+		String json = gson.toJson(usuarioModel);
 		System.out.println(json);
-		Perfil perfil = new Perfil();
-		perfil = gson.fromJson(json, Perfil.class);
-		System.out.println("perfil"+perfil.getDescPerfil());
+		Usuario usuario = new Usuario();
+		usuario = gson.fromJson(json, Usuario.class);
+		System.out.println("perfil"+usuario.getDescripcion());
 		return ""+json;
 	}
 	

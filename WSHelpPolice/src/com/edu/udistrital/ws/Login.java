@@ -12,8 +12,9 @@ import javax.ws.rs.core.MediaType;
 import com.edu.udistrital.beans.LoginBean;
 import com.edu.udistrital.model.PerfilModel;
 import com.edu.udistrital.model.UsuarioModel;
+import com.edu.udistrital.resource.BeanConfig;
 
-@Path("/login")
+@Path("/User")
 public class Login {
 	
 	@EJB
@@ -21,23 +22,19 @@ public class Login {
 	//PruebaEJB prueba;
 	
 	public Login() {
-	    try {
-	        //String lookupName = "java:global/FirstRestWebService/PruebaEJB!com.edu.udistrital.ejb.PruebaEJB";
-	        String lookupName = "java:global/WSHelpPolice/LoginBean!com.edu.udistrital.beans.LoginBean";
-	        //prueba = (PruebaEJB) InitialContext.doLookup(lookupName);
-	        prueba = (LoginBean) InitialContext.doLookup(lookupName);
-	    } catch (NamingException e) {
-	        e.printStackTrace();
-	    }
+	    BeanConfig beanConfig = new BeanConfig();
+	    prueba = (LoginBean) beanConfig.BeanConfigString(LoginBean.class);
+	  
 	  }
 
 	@GET
-	@Path("/getLogin")
+	@Path("/getUser")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String sayPlainTextHello(@QueryParam("idUsuario") final String idUsuario, @QueryParam("pass") final String password){
+	public String getUser(@QueryParam("idUsuario") final String idUsuario, @QueryParam("pass") final String password){
 		System.out.println("Ususario "+idUsuario+" Pass "+password);
 		UsuarioModel usuarioModel = new UsuarioModel();
-		
-		return "Hello world "/*+prueba.ingresarLogin(usuarioModel)*/;
+		usuarioModel.setContraseña(password);
+		usuarioModel.setDescripcion(idUsuario);
+		return "Hello world "+prueba.ingresarLogin(usuarioModel);
 	}
 }

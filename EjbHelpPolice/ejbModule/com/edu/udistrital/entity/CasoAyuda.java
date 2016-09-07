@@ -22,8 +22,7 @@ public class CasoAyuda implements Serializable {
 
 	//bi-directional many-to-one association to Persona
 	@ManyToOne
-	@JoinColumn(name="Persona_identPersona")
-	private Persona personaUsuario;
+	private Persona persona;
 
 	//bi-directional many-to-one association to TipoSolicitud
 	@ManyToOne
@@ -61,12 +60,12 @@ public class CasoAyuda implements Serializable {
 		this.descripCaso_ayuda = descripCaso_ayuda;
 	}
 
-	public Persona getPersonaUsuario() {
-		return this.personaUsuario;
+	public Persona getPersona() {
+		return this.persona;
 	}
 
-	public void setPersonaUsuario(Persona personaUsuario) {
-		this.personaUsuario = personaUsuario;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
 
 	public TipoSolicitud getTipoSolicitud() {

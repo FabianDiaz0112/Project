@@ -30,7 +30,7 @@ public class Persona implements Serializable {
 	private String numCelular;
 
 	//bi-directional many-to-one association to CasoAyuda
-	@OneToMany(mappedBy="personaUsuario")
+	@OneToMany(mappedBy="persona")
 	private List<CasoAyuda> casoAyudas1;
 
 	//bi-directional many-to-many association to CasoAyuda
@@ -111,14 +111,14 @@ public class Persona implements Serializable {
 
 	public CasoAyuda addCasoAyudas1(CasoAyuda casoAyudas1) {
 		getCasoAyudas1().add(casoAyudas1);
-		casoAyudas1.setPersonaUsuario(this);
+		casoAyudas1.setPersona(this);
 
 		return casoAyudas1;
 	}
 
 	public CasoAyuda removeCasoAyudas1(CasoAyuda casoAyudas1) {
 		getCasoAyudas1().remove(casoAyudas1);
-		casoAyudas1.setPersonaUsuario(null);
+		casoAyudas1.setPersona(null);
 
 		return casoAyudas1;
 	}
