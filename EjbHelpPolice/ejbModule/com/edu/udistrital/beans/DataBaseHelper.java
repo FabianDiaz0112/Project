@@ -6,6 +6,8 @@ package com.edu.udistrital.beans;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
@@ -16,6 +18,9 @@ import javax.persistence.Query;
  * @author Fabián Díaz González
  *
  */
+
+@Stateless
+@LocalBean
 public class DataBaseHelper {
 	
 	@PersistenceContext

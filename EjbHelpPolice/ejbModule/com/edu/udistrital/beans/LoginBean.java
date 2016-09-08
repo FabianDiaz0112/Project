@@ -3,6 +3,7 @@ package com.edu.udistrital.beans;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,21 +20,26 @@ public class LoginBean {
 
 	@PersistenceContext
 	EntityManager em;
+	@EJB
+	DataBaseHelper baseHelper;
 	
 	public static final Gson gson = new Gson();
 	
 	public LoginBean(){
-		
+		/*BeanConfig beanConfig = new BeanConfig();
+		baseHelper = (DataBaseHelper) beanConfig.BeanConfigString(DataBaseHelper.class);*/
 	}
 	
 	public String ingresarLogin(UsuarioModel usuarioModel){
-		Query query = em.createNamedQuery("Usuario.findAll");
-		List<Perfil> list = query.getResultList();
-		String json = gson.toJson(usuarioModel);
+		Usuario usuario = (Usuario) baseHelper.getFindById(usuarioModel.getIdusuario(), Usuario.class);
+		Perfil pefil = (Perfil) baseHelper.getFindById(1, Perfil.class);
+		/*Query query = em.createNamedQuery("Usuario.findAll");
+		List<Perfil> list = query.getResultList();*/
+		String json = gson.toJson(pefil);
+		json = gson.toJson(usuario);
 		System.out.println(json);
-		Usuario usuario = new Usuario();
-		usuario = gson.fromJson(json, Usuario.class);
-		System.out.println("perfil"+usuario.getDescripcion());
+		usuarioModel = gson.fromJson(json, UsuarioModel.class);
+		System.out.println("perfil "+usuarioModel.getPerfil().getDescPerfil());
 		return ""+json;
 	}
 	

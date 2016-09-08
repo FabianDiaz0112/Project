@@ -4,6 +4,8 @@ import com.edu.udistrital.entity.Perfil;
 import com.edu.udistrital.entity.Persona;
 
 public class UsuarioModel {
+	
+	private String idusuario;
 
 	private String contraseña;
 
@@ -15,6 +17,14 @@ public class UsuarioModel {
 
 	public UsuarioModel() {
 		
+	}
+
+	public String getIdusuario() {
+		return idusuario;
+	}
+
+	public void setIdusuario(String idusuario) {
+		this.idusuario = idusuario;
 	}
 
 	public String getContraseña() {

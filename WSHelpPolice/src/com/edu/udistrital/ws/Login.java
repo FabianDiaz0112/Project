@@ -19,7 +19,6 @@ public class Login {
 	
 	@EJB
 	LoginBean prueba;
-	//PruebaEJB prueba;
 	
 	public Login() {
 	    BeanConfig beanConfig = new BeanConfig();
@@ -35,6 +34,7 @@ public class Login {
 		UsuarioModel usuarioModel = new UsuarioModel();
 		usuarioModel.setContraseña(password);
 		usuarioModel.setDescripcion(idUsuario);
+		usuarioModel.setIdusuario(idUsuario);
 		return "Hello world "+prueba.ingresarLogin(usuarioModel);
 	}
 }
